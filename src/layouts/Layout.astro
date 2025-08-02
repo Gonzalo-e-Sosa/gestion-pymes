@@ -1,0 +1,39 @@
+---
+import Sidebar from '../components/astro/Sidebar.astro';
+import config from '@/config';
+import '../styles/global.css';
+import Header from '@/components/astro/Header.astro';
+
+interface Props {
+  title: string;
+  lang?: string;
+}
+
+const { title, lang } = Astro.props;
+---
+
+<html lang={lang ?? Astro.currentLocale}>
+  <head>
+    <meta charset="utf-8" />
+    <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+    <meta content="width=device-width" name="viewport" />
+    <title>{title}</title>
+  </head>
+  <body
+    class="h-screen w-screen grid grid-cols-6 grid-rows-6 gap-y-2 gap-x-6"
+    style="grid-template-rows: 64px repeat(5, minmax(0, 1fr));"
+  >
+    <div class="row-span-6">
+      <Sidebar sections={config.SIDEBAR_SECTIONS} />
+    </div>
+    <div class="col-span-5">
+      <Header />
+    </div>
+    <main
+      class="max-h-full overflow-y-auto col-span-5 row-span-5 col-start-2 row-start-2"
+    >
+      <h1 class="text-xl mb-1 text-[#1F384C]">{title}</h1>
+      <slot />
+    </main>
+  </body>
+</html>
