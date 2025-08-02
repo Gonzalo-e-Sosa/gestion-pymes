@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Poppins Medium';
+  src: url('/public/fonts/Poppins-Medium.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins Regular';
+  src: url('/public/fonts/Poppins-Regular.ttf') format('ttf');
+  font-style: normal;
+}
+
+* {
+  font-family: 'Poppins Regular';
+}
+
+@theme {
+  --font-poppins-medium: 'Poppins Medium';
+  --font-poppins-regular: 'Poppings Regular';
+  --color-bg-sidebar: #f1f2f7;
+  --color-title: #082431;
+  --color-icon: #a6abc8;
+  --color-active-bg: #707fdd3b;
+  --color-active-text: #5a6acf;
+}
