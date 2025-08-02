@@ -1,0 +1,65 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import {
+  RevenueChart,
+  OrderTimeChart,
+} from '@/components/solid-js/chart/Chart';
+
+const revenueData = {
+  labels: [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+  ],
+  datasets: [
+    {
+      label: 'Last 6 days',
+      data: [500, 400, 450, 300, 520, 580, 490, 410, 450, 320, 530, 560],
+      backgroundColor: '#4C6EF5',
+    },
+    {
+      label: 'Last Week',
+      data: [300, 320, 480, 350, 440, 470, 310, 490, 460, 410, 390, 310],
+      backgroundColor: '#E5E7EB',
+    },
+  ],
+};
+
+const orderTimeData = {
+  labels: ['Afternoon', 'Evening', 'Morning'],
+  datasets: [
+    {
+      label: 'Order Time',
+      data: [40, 32, 28],
+      backgroundColor: ['#4F46E5', '#A5B4FC', '#E0E7FF'], // tonos de azul
+      borderWidth: 0,
+      cutout: '70%', // tamaño del anillo interior
+    },
+  ],
+};
+---
+
+<Layout title="Dashboard">
+  <div
+    class="w-full h-full grid grid-rows-2 gap-4"
+    style="grid-template-columns: 3fr 2fr;"
+  >
+    <div class="w-full max-w-full h-ful max-h-full overflow-hidden">
+      <RevenueChart client:only="solid-js" data={revenueData} />
+    </div>
+    <div class="w-full max-w-full h-ful max-h-full overflow-hidden">
+      <OrderTimeChart client:only="solid-js" data={orderTimeData} />
+    </div>
+    <div class="w-full max-w-full h-ful max-h-full overflow-hidden">3</div>
+    <div class="w-full max-w-full h-ful max-h-full overflow-hidden">4</div>
+  </div>
+</Layout>
