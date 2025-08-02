@@ -1,0 +1,67 @@
+---
+import type { JSX } from 'astro/jsx-runtime';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+type Item = {
+  Icon: JSX.Element;
+  label: string;
+  href: string;
+};
+
+export interface Props {
+  sections: { title: string; items: Item[] }[];
+}
+
+const { sections } = Astro.props;
+const locale = Astro.currentLocale as string;
+---
+
+<aside class="h-screen max-w-3xs flex flex-col gap-y-2 bg-[#F1F2F7]">
+  <div class="flex flex-row items-center min-h-16 ps-5">Logo</div>
+  <nav class="h-full flex flex-col gap-y-4">
+    {
+      sections.map(({ title, items }) => (
+        <div class="flex flex-col gap-y-1">
+          <span class="sidebar-title">{title}</span>
+          <ul class="sidebar-list">
+            {items.map(({ href, Icon, label }) => (
+              <li class="sidebar-item">
+                <a href={getRelativeLocaleUrl(locale, href)}>
+                  <Icon />
+                  <span>{label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </nav>
+</aside>
+
+<style>
+  @reference "../../styles/global.css";
+
+  .sidebar-title {
+    text-transform: uppercase;
+    @apply ps-5 text-title text-xs;
+  }
+  .sidebar-list {
+  }
+  .sidebar-item {
+    @apply text-xs px-5 py-1.5 rounded-md font-poppins-regular;
+    & a {
+      @apply flex flex-row items-center gap-x-2 w-full;
+    }
+    & svg {
+      @apply text-icon;
+    }
+  }
+  .sidebar-item:has(a:active),
+  .sidebar-item:has(a:focus) {
+    @apply font-medium text-active-text bg-active-bg font-poppins-medium;
+    & svg {
+      @apply text-active-text;
+    }
+  }
+</style>

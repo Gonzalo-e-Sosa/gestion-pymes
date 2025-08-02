@@ -1,0 +1,22 @@
+---
+import Icon from '../solid-js/Icon/Icon';
+import { Search } from '../solid-js/search/Search';
+import Select from '../solid-js/select/Select';
+import Notifications from '@/../public/icons/notifications.svg';
+---
+
+<header
+  class="h-full w-full flex flex-row items-center justify-between py-4 pe-4"
+>
+  <Search client:only="solid-js" />
+  <div class="flex flex-row gap-x-4 items-center">
+    <div class="flex flex-row gap-x-3 items-center">
+      <Icon client:only="solid-js" emoji="😊" />
+      <Select
+        client:only="solid-js"
+        dataSource={[{ label: 'test', value: '0' }]}
+      />
+    </div>
+    <Notifications color={'#B0C3CC'} />
+  </div>
+</header>
